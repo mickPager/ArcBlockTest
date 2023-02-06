@@ -1,5 +1,7 @@
 package cn.mick.app.arcblocktest.api
 
+import android.content.Context
+import android.content.Intent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,6 +12,37 @@ import java.util.concurrent.TimeUnit
  */
 
 const val BASE_URL = "https://arcblockio.cn/"
+
+var StringBuilder.lastChar: Char
+    get() = get(length - 1)
+    set(value: Char) {
+        this.setCharAt(length-1, value)
+    }
+
+
+fun String.test() : String {
+    return this
+}
+
+fun test() {
+    println("OK")
+}
+
+class TestKotlin {
+
+    companion object {
+
+        val okHttpClient = OkHttpClient.Builder()
+            .callTimeout(30, TimeUnit.SECONDS)
+            .build()
+
+
+        fun startHomeActivity(intent: Intent?,context: Context?) {
+            context?.startActivity(intent)
+        }
+    }
+
+}
 
 object ApiManager {
 
@@ -25,4 +58,7 @@ object ApiManager {
 
     val apiService = retrofit.create(ApiService::class.java)
 
+    init {
+        TestKotlin.startHomeActivity(null,null)
+    }
 }

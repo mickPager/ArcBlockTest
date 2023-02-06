@@ -31,7 +31,7 @@
 
         <activity
             android:name=".activity.WebActivity"
-            android:process="web" />
+            android:process=":web" />
     </application>
 
 </manifest>

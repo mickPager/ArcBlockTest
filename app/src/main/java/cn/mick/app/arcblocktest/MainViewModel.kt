@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cn.mick.app.arcblocktest.api.ApiManager
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
  * create by Mick when 2023/1/28.
@@ -20,7 +20,10 @@ class MainViewModel(private val model: MainModel = MainModel()) : ViewModel() {
 
     fun getArticles(isRefresh: Boolean = true) {
         if (isRefresh) {
-            viewModelScope.launch {
+            viewModelScope.launch(context = Dispatchers.Default) {
+                withContext(Dispatchers.Main) {
+
+                }
                 articleLiveData.value = articles.let {
                     page = 1
                     it.clear()
